@@ -1,0 +1,51 @@
+{% extends 'registration/baseregistration.html' %}
+{% load static %}
+
+{% block title %}Reset Password{% endblock %}
+
+{% block content %}
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="{% url 'login' %}"><b>Library</b><br>Inventory</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Reset your password</p>
+                
+                {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+                
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" name="password1" placeholder="New password" required>
+                        <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                    </div>
+                    
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" name="password2" placeholder="Confirm new password" required>
+                        <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <p class="mt-3 mb-1">
+                    <a href="{% url 'base' %}">Login</a>
+                </p>
+                <p class="mb-0">
+                    <a href="{% url 'register' %}" class="text-center">Register a new membership</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

@@ -38,8 +38,8 @@ Project ini menggunakan **PostgreSQL** sebagai basis data utama dan menyimpan ko
 
 ### 1️⃣ Clone Repository
 ```bash
-git clone https://github.com/<your-username>/inventaris.git
-cd inventaris
+git clone https://github.com/<your-username>/Inventaris.git
+cd Inventaris
 ```
 
 ### 2️⃣ Setup Virtual Environment
@@ -114,11 +114,11 @@ Lihat file `LICENSE` untuk detailnya.
 ## 👨‍💻 Author
 **Hisyam (MH)**  
 📍 Data & Tech Enthusiast  
-🌐 [LinkedIn](https://www.linkedin.com) • [GitHub](https://github.com)
+🌐 [LinkedIn](https://www.linkedin.com/in/muhammad-hisyam-8a66711b0/) • [GitHub](https://github.com/MuhammadHisyam11)
 
 ---
 
 <p align="center">
   Made with ❤️ using <b>Django + PostgreSQL</b><br>
-  <i>"Manage your money like a pro — one transaction at a time."</i>
+  <i>"Inventaris"</i>
 </p>
