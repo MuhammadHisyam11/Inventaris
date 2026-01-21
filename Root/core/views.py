@@ -1,24 +1,36 @@
-from datetime import timezone
 from django.conf import settings
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.hashers import make_password, check_password
-from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.urls import reverse
 from django.core.mail import send_mail
-from .models import User
+from .authentication.auth_login import custom_login_required
+from .models import User, Product
 from .tokens import reset_token_generator
+
+Role = [1, 2]  # Define valid roles here
 
 # Create your views here.
 def login(request):
+    if request.method == 'POST':
+        email = (request.POST.get('email') or "").strip().lower()
+        password = request.POST.get('password') or ""
+
+        user = User.objects.filter(email__iexact=email).first()
+
+        if user and check_password(password, user.password):
+            request.session['user_id'] = user.id
+            request.session['username'] = user.username
+            return redirect('dashboard')
+
+        return render(request, 'registration/login.html', {'error': 'Invalid email or password.'})
+
     return render(request, 'registration/login.html')
 
-def base(request):
-    return render(request, 'base.html')
-
-def dashboard(request):
-    return render(request, 'dashboard.html')
+def logout(request):
+    request.session.flush()
+    return redirect('login')
 
 def forget(request):
     if request.method == "POST":
@@ -95,3 +107,32 @@ def register(request):
         return render(request, 'registration/login.html', {'message': 'Registration successful. Please log in.'})
         
     return render(request, 'registration/register.html')
+
+@custom_login_required
+def dashboard(request):
+    user = User.objects.get(id=request.session['user_id'])
+    product = Product.objects.all()
+    count_product = product.count()
+    count_user = User.objects.all()
+    count_user_admin = count_user.count()
+    return render(request, 'dashboard.html', {"user": user, "product": product, "count_product": count_product, "count_user_admin": count_user_admin})
+
+@custom_login_required
+def manajement_user(request):
+    current_user = User.objects.get(id=request.session['user_id'])
+
+    if current_user.role_id not in [1]:
+        return render(request, '404.html')
+
+    users = User.objects.all()
+    return render(request,'Page/user_management.html',{'users': users, 'role_id': current_user.role_id, 'user': current_user})
+
+@custom_login_required
+def inventory(request):
+    current_user = User.objects.get(id=request.session['user_id'])
+
+    if current_user.role_id not in Role:
+        return render(request, '404.html')
+
+    users = User.objects.all()
+    return render(request,'Page/inventory.html',{'users': users, 'role_id': current_user.role_id, 'user': current_user})
