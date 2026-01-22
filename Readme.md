@@ -7,24 +7,6 @@
   <a href="#"><img src="https://img.shields.io/badge/license-MIT-orange" alt="License MIT"></a>
 </p>
 
-<!-- ---
-
-## 🧭 Overview
-
-**Finance** adalah aplikasi berbasis **Django** untuk membantu pengguna mencatat, memantau, dan menganalisis keuangan bulanan dengan efisien.  
-Project ini menggunakan **PostgreSQL** sebagai basis data utama dan menyimpan konfigurasi sensitif di file `.env`.
-
----
-
-## ⚙️ Features
-- ✨ Multi-user financial tracking  
-- 📊 Income & expense categorization  
-- 📅 Monthly summary dashboard  
-- 🔐 Environment-based configuration  
-- 🗄 PostgreSQL database support  
-
---- -->
-
 ## 🧱 Tech Stack
 | Layer | Technology |
 |-------|-------------|
@@ -55,7 +37,7 @@ pip install -r requirements.txt
 ```
 
 ### 4️⃣ Configure Environment Variables
-Buat file `.env` di root folder:
+Buat file `.env`:
 ```env
 SECRET_KEY=django-insecure-your-secret-key
 DEBUG=True
@@ -67,43 +49,30 @@ DB_HOST=localhost
 DB_PORT=5432
 ```
 
-### 5️⃣ Apply Migrations
+### 5️⃣ Generate Secret Key
+Ikuti langkah ini:
+```bash
+pip install python-dotenv
+```
+
+```bash
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
+
+Copy hasilnya di terminal dan masukkan ke file `.env`
+
+### 6️⃣ Apply Migrations
 ```bash
 python manage.py migrate
 ```
 
-### 6️⃣ Run the App
+### 7️⃣ Run the App
 ```bash
 python manage.py runserver
 ```
 
 🌐 Buka di browser:  
 👉 [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-
-<!-- ---
-
-## 🧠 Development Notes
-- Semua konfigurasi rahasia disimpan di `.env`  
-- Gunakan `venv` agar environment tetap terisolasi  
-- Jangan commit file `.env` atau `venv/` ke GitHub  
-
-Tambahkan ke `.gitignore`:
-```
-venv/
-__pycache__/
-.env
-```
-
----
-
-## 📦 Requirements
-```
-Django>=5.0,<6.0
-python-dotenv>=1.0.0
-psycopg2-binary>=2.9
-```
-
---- -->
 
 ## 🧾 License
 Distributed under the MIT License.  
