@@ -60,12 +60,15 @@ python -c "from django.core.management.utils import get_random_secret_key; print
 
 Copy hasilnya di terminal dan masukkan ke file `.env`
 
-### 6️⃣ Apply Migrations
+### 6️⃣ Enter Folder Root
 ```bash
 cd Root
 ```
 
 ### 7️⃣ Apply Migrations
+```bash
+python manage.py makemigrations
+```
 ```bash
 python manage.py migrate
 ```
@@ -85,7 +88,7 @@ Lihat file `LICENSE` untuk detailnya.
 ---
 
 ## 👨‍💻 Author
-**Hisyam (MH)**  
+**Muhammad Hisyam (MH)**  
 📍 Data & Tech Enthusiast  
 🌐 [LinkedIn](https://www.linkedin.com/in/muhammad-hisyam-8a66711b0/) • [GitHub](https://github.com/MuhammadHisyam11)
 
