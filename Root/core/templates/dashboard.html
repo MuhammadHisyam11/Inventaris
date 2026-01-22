@@ -4,14 +4,20 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<!--begin::App Wrapper-->
-<!--begin::App Main-->
 <main class="app-main">
-    <!--begin::App Content Header-->
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == 'error' %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {% elif message.tags == 'success' %}
+    <div class="alert alert-success">{{ message }}</div>
+    {% else %}
+    <div class="alert alert-info">{{ message }}</div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
     <div class="app-content-header">
-        <!--begin::Container-->
         <div class="container-fluid">
-            <!--begin::Row-->
             <div class="row">
                 <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
                 <div class="col-sm-6">
@@ -21,17 +27,12 @@
                     </ol>
                 </div>
             </div>
-            <!--end::Row-->
         </div>
-        <!--end::Container-->
     </div>
     <div class="app-content">
-        <!--begin::Container-->
         <div class="container-fluid">
-            <!-- Info boxes -->
-            {% if user.role_id == 1 or user.role_id == 2 %}
+            {% if user.role_id.id == 1 or user.role_id.id == 2 %}
             <div class="row">
-                <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
                         <span class="info-box-icon text-bg-danger shadow-sm">
@@ -41,12 +42,9 @@
                             <span class="info-box-text">Stock</span>
                             <span class="info-box-number">{{ count_product }}</span>
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
-                {% if user.role_id == 1 %}
+                {% if user.role_id.id == 1 %}
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
                         <span class="info-box-icon text-bg-warning shadow-sm">
@@ -56,23 +54,17 @@
                             <span class="info-box-text">New Members</span>
                             <span class="info-box-number">{{ count_user_admin }}</span>
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
                 {% endif %}
-                <!-- /.col -->
             </div>
             {% endif %}
-            <!-- /.row -->
-            <!--begin::Row-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Hot Book 🔥</h3>
                         </div>
-                        <!-- /.card-header -->
                         <div class="card-body p-0">
                             <div class="table-responsive">
                                 <table class="table m-0">

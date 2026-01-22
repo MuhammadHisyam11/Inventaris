@@ -51,7 +51,7 @@
                     <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"> <p>Dashboard</p></a>
                 </li>
                 
-                {% if user.role_id == 1 %}
+                {% if user.role_id.id == 1 %}
                 <li class="nav-item {% if request.resolver_match.url_name == 'management-user' %}menu-open{% endif %}">
                     <a href="{% url 'management-user' %}" class="nav-link {% if request.resolver_match.url_name == 'management-user' %}active{% endif %}"> <p>Manajement User</p></a>
                 </li>
@@ -61,13 +61,13 @@
                     <a href="{% url 'inventory' %}" class="nav-link {% if request.resolver_match.url_name == 'inventory' %}active{% endif %}"> <p>Inventory</p></a>
                 </li>
                 
-                <hr class="border-3 border-secondary opacity-100 w-50 mx-auto my-5">
+                {% comment %} <hr class="border-3 border-secondary opacity-100 w-50 mx-auto my-5">
                 
                 <li class="nav-item">
                     <a href="{% url 'logout' %}" class="nav-link">
                         <p>logout</p>
                     </a>
-                </li>
+                </li> {% endcomment %}
                 
             </ul>
         </nav>

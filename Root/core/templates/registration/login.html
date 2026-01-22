@@ -4,6 +4,17 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'error' %}
+<div class="alert alert-danger">{{ message }}</div>
+{% elif message.tags == 'success' %}
+<div class="alert alert-success">{{ message }}</div>
+{% else %}
+<div class="alert alert-info">{{ message }}</div>
+{% endif %}
+{% endfor %}
+{% endif %}
 <div class="login-logo">
     <a href="{% url 'login' %}"><b>Library</b><br>Inventory</a>
 </div>
@@ -23,8 +34,8 @@
             <div class="row">
                 <div class="col-8">
                     {% comment %} <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                    <label class="form-check-label" for="flexCheckDefault"> Remember Me </label>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                        <label class="form-check-label" for="flexCheckDefault"> Remember Me </label>
                     </div> {% endcomment %}
                 </div>
                 <div class="col-4">
@@ -35,13 +46,13 @@
             </div>
         </form>
         {% comment %} <div class="social-auth-links text-center mb-3 d-grid gap-2">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-primary">
-        <i class="bi bi-facebook me-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-danger">
-        <i class="bi bi-google me-2"></i> Sign in using Google+
-        </a>
+            <p>- OR -</p>
+            <a href="#" class="btn btn-primary">
+                <i class="bi bi-facebook me-2"></i> Sign in using Facebook
+            </a>
+            <a href="#" class="btn btn-danger">
+                <i class="bi bi-google me-2"></i> Sign in using Google+
+            </a>
         </div> {% endcomment %}
         <p class="mb-1"><a href="{% url 'forgot-password' %}">I forgot my password</a></p>
         <p class="mb-0">

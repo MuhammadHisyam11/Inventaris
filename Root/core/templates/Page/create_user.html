@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}ADD User{% endblock %}
+
+{% block content %}
+<main class="app-main">
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == 'error' %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {% elif message.tags == 'success' %}
+    <div class="alert alert-success">{{ message }}</div>
+    {% else %}
+    <div class="alert alert-info">{{ message }}</div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <div class="app-content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6"><h3 class="mb-0">Add User</h3></div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item"><a href="{% url 'management-user' %}">Management User</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Add User</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="app-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">User Management</h3>
+                        </div>
+                        <div class="card-body p-2">
+                            <div class="table-responsive">
+                                <form method="POST" action="{% url 'create' %}">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="role_id" class="form-label">Role</label>
+                                        <select name="role_id" id="role_id">
+                                            <option value="1">Admin</option>
+                                            <option value="2">Seller</option>
+                                            <option value="3">Pengguna</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary p-2">Create User</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
