@@ -39,10 +39,10 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="role_id" class="form-label">Role</label>
-                                        <select value="{{ user.role_id.id }}" name="role_id" id="role_id">
-                                            <option value="1">Admin</option>
-                                            <option value="2">Seller</option>
-                                            <option value="3">Pengguna</option>
+                                        <select name="role_id" id="role_id" class="form-select">
+                                            <option value="1" {% if user.role_id.id == 1 %}selected{% endif %}>Admin</option>
+                                            <option value="2" {% if user.role_id.id == 2 %}selected{% endif %}>Seller</option>
+                                            <option value="3" {% if user.role_id.id == 3 %}selected{% endif %}>Pengguna</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">

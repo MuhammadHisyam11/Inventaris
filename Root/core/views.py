@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.conf import settings
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.hashers import make_password, check_password
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
@@ -225,7 +225,7 @@ def create_inv(request):
 
 def buy(request, id):
     user = User.objects.get(id=request.session['user_id'])
-    product = Product.objects.get(id=id)
+    product = get_object_or_404(Product, id=id)
 
     if user.role_id.id not in [1, 2, 3]:
         return render(request, '404.html')
@@ -233,10 +233,11 @@ def buy(request, id):
     if product.stock > 0:
         product.stock -= 1
         product.save()
+        messages.success(request, 'Purchase successful!')
     else:
-        return render(request, 'Page/inventory.html', {'user': user, 'product': product, 'error': 'Product is out of stock.'})
+        messages.error(request, 'Product is out of stock.')
 
-    return render(request, 'Page/inventory.html', {'user': user, 'product': product})
+    return redirect('inventory')
 
 @custom_login_required
 def update_inventory(request, id):

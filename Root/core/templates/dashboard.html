@@ -4,18 +4,18 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'error' %}
+<div class="alert alert-danger">{{ message }}</div>
+{% elif message.tags == 'success' %}
+<div class="alert alert-success">{{ message }}</div>
+{% else %}
+<div class="alert alert-info">{{ message }}</div>
+{% endif %}
+{% endfor %}
+{% endif %}
 <main class="app-main">
-    {% if messages %}
-    {% for message in messages %}
-    {% if message.tags == 'error' %}
-    <div class="alert alert-danger">{{ message }}</div>
-    {% elif message.tags == 'success' %}
-    <div class="alert alert-success">{{ message }}</div>
-    {% else %}
-    <div class="alert alert-info">{{ message }}</div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
     <div class="app-content-header">
         <div class="container-fluid">
             <div class="row">
