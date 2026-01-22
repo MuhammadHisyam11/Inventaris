@@ -1,11 +1,21 @@
 from django.db import models
 
 # Create your models here.
+
+class Role(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+    
 class User(models.Model):
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
-    role_id = models.IntegerField(default=3)
+    role_id = models.ForeignKey(Role, on_delete=models.CASCADE, default=3)
     last_login = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -18,15 +28,6 @@ class User(models.Model):
     @classmethod
     def get_email_field_name(cls):
         return getattr(cls, "EMAIL_FIELD", "email")
-    
-class Role(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    description = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.name
     
 class Product(models.Model):
     name = models.CharField(max_length=200)
