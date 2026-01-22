@@ -106,7 +106,7 @@ def register(request):
         
         messages.success(request, 'Registration successful. Please log in.')
         
-        return render(request, 'registration/login.html')
+        return redirect('login')
         
     return render(request, 'registration/register.html')
 
