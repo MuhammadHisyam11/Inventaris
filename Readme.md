@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.14+-blue?logo=python" alt="Python 3.14.0"></a>
-  <a href="https://www.djangoproject.com/"><img src="https://img.shields.io/badge/Django-5.x-green?logo=django" alt="Django 6.0.1"></a>
+  <a href="https://www.djangoproject.com/"><img src="https://img.shields.io/badge/Django-6.x-green?logo=django" alt="Django 6.0.1"></a>
   <a href="https://www.postgresql.org/"><img src="https://img.shields.io/badge/PostgreSQL-15+-blue?logo=postgresql" alt="PostgreSQL"></a>
   <a href="#"><img src="https://img.shields.io/badge/license-MIT-orange" alt="License MIT"></a>
 </p>
@@ -20,8 +20,7 @@
 
 ### 1️⃣ Clone Repository
 ```bash
-git clone https://github.com/<your-username>/Inventaris.git
-cd Inventaris
+git clone https://github.com/MuhammadHisyam11/Inventaris.git
 ```
 
 ### 2️⃣ Setup Virtual Environment
@@ -63,10 +62,15 @@ Copy hasilnya di terminal dan masukkan ke file `.env`
 
 ### 6️⃣ Apply Migrations
 ```bash
+cd Root
+```
+
+### 7️⃣ Apply Migrations
+```bash
 python manage.py migrate
 ```
 
-### 7️⃣ Run the App
+### 8️⃣ Run the App
 ```bash
 python manage.py runserver
 ```

@@ -90,7 +90,7 @@ def reset_password_confirm(request, uidb64, token):
         user.password = make_password(p1)
         user.save(update_fields=["password"])
 
-        return render(request, "registration/login.html")
+        return redirect("login")
 
     return render(request, "registration/reset-invalid.html")
 
